@@ -1,1 +1,6 @@
-{{ main.currentStepObj.title }}
+<h1>{{ main.currentStepObj.title }}</h1>
+<br>
+
+<ul>
+  <li ng-repeat="movie in main.movies">{{ movie.Title }}</li>
+</ul>
