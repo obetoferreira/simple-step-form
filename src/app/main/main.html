@@ -1,0 +1,21 @@
+<div layout="column" class="form-container">
+  <header class="form-header">
+    <nav class="stepper">
+      <ul>
+        <li ng-repeat="step in main.steps track by $index">
+          <button ng-class="{'active': main.isDirtyStep($index)}" ng-click="main.setCurrentStep($index)" ng-disabled="!main.isDirtyStep($index)">{{ ($index + 1) }}</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <form name="mainForm">
+    <div class="form-body" ui-view>
+      <h1>=)</h1>
+    </div>
+  </form>
+  <footer class="form-footer">
+    <md-button ng-click="main.prevStep()" class="md-raised md-primary">Back</md-button>
+    <md-button ng-click="main.nextStep()" class="md-raised md-primary">Next</md-button>
+    <!-- <md-button ng-disabled="mainForm[main.currentStepObj.form].$invalid" ng-click="main.nextStep()" class="md-raised md-primary">Next</md-button> -->
+  </footer>
+</div>
