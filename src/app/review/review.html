@@ -1,1 +1,47 @@
-{{ main.currentStepObj.title }}
+<h1>{{ main.currentStepObj.title }}</h1>
+<br>
+<ng-form name="profileForm">
+  <div layout-gt-sm="row">
+    <md-input-container class="md-block" flex-gt-sm>
+      <label>Your favorite comic book superhero</label>
+      <input required name="superhero" ng-model="main.profileForm.superhero" />
+      <div ng-messages="profileForm.superhero.$error">
+        <div ng-message="required">This field is required.</div>
+      </div>
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+    <md-input-container class="md-block" flex-gt-sm>
+      <label>Tv Series that you are currently watching</label>
+      <input required name="tvseries" ng-model="main.profileForm.tvseries" />
+      <div ng-messages="profileForm.tvseries.$error">
+        <div ng-message="required">This field is required.</div>
+      </div>
+    </md-input-container>
+  </div>
+  <div layout-gt-sm="row">
+    <md-input-container class="md-block" flex-gt-sm>
+      <label>Which one do you say: Bolacha or biscoito?</label>
+      <input required name="biscoito" ng-model="main.profileForm.biscoito" />
+      <div ng-messages="profileForm.biscoito.$error">
+        <div ng-message="required">This field is required.</div>
+      </div>
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+    <md-input-container class="md-block" flex-gt-sm>
+      <label>What is the best quote ever</label>
+      <input required name="bestquote" ng-model="main.profileForm.bestquote" />
+      <div ng-messages="profileForm.bestquote.$error">
+        <div ng-message="required">This field is required.</div>
+      </div>
+    </md-input-container>
+  </div>
+</ng-form>
+
+<md-radio-group ng-model="main.moviesForm.movie">
+  <md-radio-button value="{{ main.moviesForm.movie }}" class="md-primary">{{ main.movies[main.moviesForm.movie].Title }}</md-radio-button>
+<md-radio-group ng-model="main.seriesForm.season">
+  <md-radio-button value="{{ main.seriesForm.season }}" class="md-primary">GoT Season - {{ main.season.Season }}</md-radio-button>
+</md-radio-group>
+<md-radio-group ng-model="main.foodForm.food">
+  <md-radio-button value="{{ main.foodForm.food }}" class="md-primary">{{ main.foods[main.foodForm.food].Title }}</md-radio-button>
+</md-radio-group>

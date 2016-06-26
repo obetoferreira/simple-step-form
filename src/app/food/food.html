@@ -1,1 +1,14 @@
-{{ main.currentStepObj.title }}
+<ng-form name="foodForm">
+  <h1>{{ main.currentStepObj.title }}</h1>
+  <p>We take too serious to choose our restaurant, everyday. What kind of food do you like?</p>
+  <br>
+
+  <md-radio-group ng-model="main.foodForm.food" ng-change="main.selectFood()" required layout="row" layout-wrap>
+    <div class="radio-vertical" ng-repeat="food in main.foods" flex="25">
+      <md-radio-button ng-value="$index" aria-label="{{ food.Title }}">
+        <img height="100" src="{{ food.Poster }}" alt="">
+      </md-radio-button>
+      <p>{{ food.Title }}</p>
+    </div>
+  </md-radio-group>
+</ng-form>

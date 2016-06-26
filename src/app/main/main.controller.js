@@ -6,7 +6,7 @@
     .controller('MainController', MainController)
 
   /** @ngInject */
-  function MainController ($state, Steps, Movies, Series) {
+  function MainController ($state, Steps, Movies, Series, Foods) {
     var vm = this
 
     vm.isDirtyStep = function (step) {
@@ -49,13 +49,23 @@
       })
     }
 
+    vm.getSeasons = function (callback) {
+      callback(Series.getSeasons())
+    }
+
     vm.getSeason = function (season, callback) {
+      if (!season) season = vm.seriesForm.season
       Series.getSeason(season).then(function (res) {
-        callback(res.data)
+        vm.season = res.data
+        if (callback) callback(res.data)
       }, function (err) {
         console.log(err)
-        callback()
+        if (callback) callback()
       })
+    }
+
+    vm.getFoods = function (callback) {
+      callback(Foods.getFoods())
     }
 
     function init () {
@@ -66,6 +76,12 @@
       })
       vm.getSerie(function (serie) {
         if (serie) vm.serie = serie
+      })
+      vm.getSeasons(function (seasons) {
+        vm.seasons = seasons
+      })
+      vm.getFoods(function (foods) {
+        vm.foods = foods
       })
     }
 

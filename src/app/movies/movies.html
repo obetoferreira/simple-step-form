@@ -1,6 +1,15 @@
-<h1>{{ main.currentStepObj.title }}</h1>
-<br>
+<ng-form name="moviesForm">
+  <h1>{{ main.currentStepObj.title }}</h1>
+  <p>Which of these is your favorite Star Wars movie?</p>
+  <br>
 
-<ul>
-  <li ng-repeat="movie in main.movies">{{ movie.Title }}</li>
-</ul>
+  <md-radio-group ng-model="main.moviesForm.movie" ng-change="main.selectMovie()" required layout="row" layout-wrap>
+    <div class="radio-vertical" ng-repeat="movie in main.movies" flex-gt-sm="25" flex="50">
+      <md-radio-button ng-value="$index" aria-label="{{ movie.Title }}">
+        <img ng-if="movie.Poster && movie.Poster !== 'N/A'" height="100" src="{{ movie.Poster }}" alt="">
+        <img ng-if="!movie.Poster || movie.Poster === 'N/A'" height="100" src="http://marvelmoviemarathon.com/posters/placeholder.png" alt="">
+      </md-radio-button>
+      <p>{{ movie.Title }}</p>
+    </div>
+  </md-radio-group>
+</ng-form>

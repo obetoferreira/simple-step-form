@@ -1,0 +1,20 @@
+.radio-vertical {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 0 20px;
+
+  md-radio-button {
+    text-align: center;
+
+    .md-container {
+      top: 100%;
+      left: 0;
+      margin: auto;
+      right: 0;
+    }
+    .md-label {
+      margin-left: 0;
+      margin-bottom: 20px;
+    }
+  }
+}
