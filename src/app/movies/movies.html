@@ -6,8 +6,8 @@
   <md-radio-group ng-model="main.moviesForm.movie" ng-change="main.selectMovie()" required layout="row" layout-wrap>
     <div class="radio-vertical" ng-repeat="movie in main.movies" flex-gt-sm="25" flex="50">
       <md-radio-button ng-value="$index" aria-label="{{ movie.Title }}">
-        <img ng-if="movie.Poster && movie.Poster !== 'N/A'" height="100" src="{{ movie.Poster }}" alt="">
-        <img ng-if="!movie.Poster || movie.Poster === 'N/A'" height="100" src="http://marvelmoviemarathon.com/posters/placeholder.png" alt="">
+        <img ng-if="movie.Poster && movie.Poster !== 'N/A'" height="100" ng-show="movie.Poster" ng-src="{{ movie.Poster }}" alt="{{ movie.Title }}">
+        <img ng-if="!movie.Poster || movie.Poster === 'N/A'" height="100" ng-src="http://marvelmoviemarathon.com/posters/placeholder.png" alt="{{ movie.Title }}">
       </md-radio-button>
       <p>{{ movie.Title }}</p>
     </div>

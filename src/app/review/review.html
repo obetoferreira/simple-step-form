@@ -37,11 +37,23 @@
   </div>
 </ng-form>
 
-<md-radio-group ng-model="main.moviesForm.movie">
-  <md-radio-button value="{{ main.moviesForm.movie }}" class="md-primary">{{ main.movies[main.moviesForm.movie].Title }}</md-radio-button>
-<md-radio-group ng-model="main.seriesForm.season">
-  <md-radio-button value="{{ main.seriesForm.season }}" class="md-primary">GoT Season - {{ main.season.Season }}</md-radio-button>
-</md-radio-group>
-<md-radio-group ng-model="main.foodForm.food">
-  <md-radio-button value="{{ main.foodForm.food }}" class="md-primary">{{ main.foods[main.foodForm.food].Title }}</md-radio-button>
-</md-radio-group>
+<div layout-gt-sm="row" layout-align="space-between center">
+  <div>
+    <p><small>Your favorite Star Wars Movie</small></p>
+    <md-radio-group ng-model="main.moviesForm.movie">
+      <md-radio-button value="{{ main.moviesForm.movie }}" class="md-primary">{{ main.movies[main.moviesForm.movie].Title }}</md-radio-button>
+    </md-radio-group>
+  </div>
+  <div>
+    <p><small>Your favorite GoT Season</small></p>
+    <md-radio-group ng-model="main.seriesForm.season">
+      <md-radio-button value="{{ main.seriesForm.season }}" class="md-primary">GoT Season - {{ main.season.Season }}</md-radio-button>
+    </md-radio-group>
+  </div>
+  <div>
+    <p><small>Your kind of food</small></p>
+    <md-radio-group ng-model="main.foodForm.food">
+      <md-radio-button value="{{ main.foodForm.food }}" class="md-primary">{{ main.foods[main.foodForm.food].Title }}</md-radio-button>
+    </md-radio-group>
+  </div>
+</div>

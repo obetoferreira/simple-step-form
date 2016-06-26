@@ -23,6 +23,22 @@
       $state.go(vm.currentStepObj.route)
     }
 
+    vm.isFirstStep = function () {
+      if (vm.currentStep === 0) {
+        return true
+      } else {
+        return false
+      }
+    }
+
+    vm.isLastStep = function () {
+      if (vm.currentStep === (vm.steps.length - 1)) {
+        return true
+      } else {
+        return false
+      }
+    }
+
     vm.nextStep = function () {
       vm.setCurrentStep(vm.currentStep + 1)
     }
@@ -68,9 +84,12 @@
       callback(Foods.getFoods())
     }
 
+    vm.isWelcomeState = function () {
+      return $state.current.name === 'main'
+    }
+
     function init () {
       vm.steps = Steps.getSteps()
-      vm.setCurrentStep(0)
       vm.getMovies(function (movies) {
         if (movies) vm.movies = movies
       })

@@ -10,11 +10,17 @@
   </header>
   <form name="mainForm">
     <div class="form-body" ui-view>
-      <h1>=)</h1>
+      <div class="text-center">
+        <h1>=)</h1>
+        <md-button ng-click="main.setCurrentStep(0)" class="md-raised md-primary">Start</md-button>
+      </div>
     </div>
   </form>
-  <footer class="form-footer">
-    <md-button ng-click="main.prevStep()" class="md-raised md-primary">Back</md-button>
-    <md-button ng-disabled="mainForm[main.currentStepObj.form].$invalid" ng-click="main.nextStep()" class="md-raised md-primary">Next</md-button>
+  <footer class="form-footer" layout="row" layout-align="space-between center" ng-if="!main.isWelcomeState()">
+    <div><md-button ng-if="!main.isFirstStep()" ng-click="main.prevStep()" class="md-raised">Back</md-button></div>
+    <div>
+      <md-button ng-if="!main.isLastStep()" ng-disabled="mainForm[main.currentStepObj.form].$invalid" ng-click="main.nextStep()" class="md-raised md-primary">Next</md-button>
+      <md-button ng-if="main.isLastStep()" ng-disabled="mainForm[main.currentStepObj.form].$invalid" ui-sref="done" class="md-raised md-primary">Save</md-button>
+    </div>
   </footer>
 </div>

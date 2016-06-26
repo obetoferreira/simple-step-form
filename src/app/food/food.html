@@ -4,9 +4,9 @@
   <br>
 
   <md-radio-group ng-model="main.foodForm.food" ng-change="main.selectFood()" required layout="row" layout-wrap>
-    <div class="radio-vertical" ng-repeat="food in main.foods" flex="25">
+    <div class="radio-vertical" ng-repeat="food in main.foods" flex-gt-sm="25" flex="50">
       <md-radio-button ng-value="$index" aria-label="{{ food.Title }}">
-        <img height="100" src="{{ food.Poster }}" alt="">
+        <img class="img-responsive" height="100" ng-src="{{ food.Poster }}" alt="{{ food.Title }}">
       </md-radio-button>
       <p>{{ food.Title }}</p>
     </div>
