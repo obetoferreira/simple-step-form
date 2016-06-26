@@ -3,7 +3,7 @@
   <br>
 
   <div layout="row" layout-wrap>
-    <div flex="25">
+    <div flex="25" hide-xs>
       <img class="img-responsive" ng-if="main.serie.Poster && main.serie.Poster !== 'N/A'" ng-show="main.serie.Poster" ng-src="{{ main.serie.Poster }}" alt="{{ main.serie.Title }}">
       <img class="img-responsive" ng-if="!main.serie.Poster || main.serie.Poster === 'N/A'" ng-src="http://marvelmoviemarathon.com/posters/placeholder.png" alt="{{ main.serie.Title }}">
     </div>
