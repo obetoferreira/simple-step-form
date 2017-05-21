@@ -3,28 +3,44 @@
 
 ----------------------------------------
 
-## Getting started
+### Important ###
 
-Download this repo, open your terminal command and type the following commands at it's folder:
+Seems like OMDb API is now a paid service. To activate all http requests you have to replace the API KEY, located in `index.constants.js` line 9.
 
-```npm install```
+### Dependencies ###
 
-(To install the NPM dependencies)
+* Node
+* NPM
+* Gulp
 
-```bower install```
+### Getting started ###
 
-(To install the Bower dependencies)
+Assuming you already have all dependencies installed, you can run this application.
 
-## Running locally
+* After cloning this repo, you install all dependencies before running the application. 
+Just open your terminal and type:
 
-Just run the `gulp serve` command into the project folder to start the local server.
+```
+npm install && bower install
+```
 
-You can find more gulp tasks at the [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular) repo.
+* Dependencies installed, you can start the app using the following command line:
 
-## Built with:
+```
+gulp serve
+```
+Now you can see app running, paste the url `http://localhost:3000/` in your favorite browser.
 
-- AngularJS
-- Gulp
-- Bower
-- Angular Material
-- Sass
+### Technology stack ###
+
+* Package managers: **NPM + Bower**
+* Task runner: **Gulp**
+* Front-end framework: **Angular.js**
+* CSS pre-processor: **SASS**
+* CSS frameworks: **AngularJS Material**
+
+### Considerations ###
+
+* All files structure was built manualy. That means, no scaffolding generator were used.
+* Assuming this application is for development only, features as: build task, minification, design details, custom alerts and deep testing were not made in order to improve development time execution.
+* Any questions? Mail-me: obetoferreira@gmail.com
