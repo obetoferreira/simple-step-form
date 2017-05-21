@@ -1,29 +1,44 @@
-/**
- *  Welcome to your gulpfile!
- *  The gulp tasks are split into several files in the gulp directory
- *  because putting it all here was too long
- */
+// gulp
+var gulp = require('gulp')
+var browserSync = require('browser-sync').create()
 
-'use strict';
+// plugins
+var es = require('event-stream')
+var sass = require('gulp-sass')
+var bowerFiles = require('main-bower-files')
+var inject = require('gulp-inject')
 
-var gulp = require('gulp');
-var wrench = require('wrench');
+gulp.task('styles', function() {
+    gulp.src('./app/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./app/assets/css/'))
+        .pipe(browserSync.stream())
+})
 
-/**
- *  This will load all js or coffee files in the gulp directory
- *  in order to load all gulp tasks
- */
-wrench.readdirSyncRecursive('./gulp').filter(function(file) {
-  return (/\.(js|coffee)$/i).test(file);
-}).map(function(file) {
-  require('./gulp/' + file);
-});
+gulp.task('inject', function() {
+    var target = gulp.src('./app/index.html')
+    var sources = gulp.src(['./app/**/*.js', './app/assets/**/*.css'], { read: false })
+    var dependencies = gulp.src(bowerFiles(), { read: false })
 
+  return target
+        .pipe(inject(dependencies, { name: 'bower' }))
+        .pipe(inject(es.merge(sources), { relative: true }))
+    .pipe(gulp.dest('./app'))
+})
 
-/**
- *  Default task clean temporaries directories and launch the
- *  main optimization build task
- */
-gulp.task('default', ['clean'], function () {
-  gulp.start('build');
-});
+gulp.task('serve', ['styles', 'inject'], function () {
+    browserSync.init({
+        server: {
+            baseDir: "app",
+            routes: {
+                "/bower_components": "bower_components"
+            }
+        }
+    })
+    gulp.watch('./app/**/*.scss', ['styles'])
+    gulp.watch("./app/**/*.js").on('change', browserSync.reload)
+    gulp.watch("./app/**/*.html").on('change', browserSync.reload)
+})
+
+// default task
+gulp.task('default', ['serve'])
