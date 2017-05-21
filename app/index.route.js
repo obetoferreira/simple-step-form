@@ -6,7 +6,7 @@
     .config(routerConfig)
 
   /** @ngInject */
-  function routerConfig ($stateProvider, $urlRouterProvider) {
+  function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
       .state('main', {
         url: '/',
@@ -15,35 +15,37 @@
         controllerAs: 'main'
       })
       .state('main.profile', {
-        url: '/profile',
+        url: 'profile',
         templateUrl: 'components/profile/profile.html'
       })
       .state('main.movies', {
-        url: '/movies',
+        url: 'movies',
         templateUrl: 'components/movies/movies.html'
       })
       .state('main.series', {
-        url: '/series',
+        url: 'series',
         templateUrl: 'components/series/series.html'
       })
       .state('main.series.season', {
-        url: '/series/season',
+        url: 'season',
         templateUrl: 'components/season/season.html'
       })
       .state('main.food', {
-        url: '/food',
+        url: 'food',
         templateUrl: 'components/food/food.html'
       })
       .state('main.review', {
-        url: '/review',
+        url: 'review',
         templateUrl: 'components/review/review.html'
       })
       .state('done', {
-        url: '/done',
+        url: 'done',
         templateUrl: 'components/done/done.html',
         controller: 'DoneController',
         controllerAs: 'done'
       })
+
+    $locationProvider.hashPrefix('');
 
     $urlRouterProvider.otherwise('/')
   }

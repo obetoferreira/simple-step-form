@@ -4,7 +4,7 @@
   <div layout-gt-sm="row">
     <md-input-container class="md-block" flex-gt-sm>
       <label>Your favorite comic book superhero</label>
-      <input required name="superhero" ng-model="main.profileForm.superhero" />
+      <input required name="superhero" value="Batman" />
       <div ng-messages="profileForm.superhero.$error">
         <div ng-message="required">This field is required.</div>
       </div>
@@ -12,7 +12,7 @@
     <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
     <md-input-container class="md-block" flex-gt-sm>
       <label>Tv Series that you are currently watching</label>
-      <input required name="tvseries" ng-model="main.profileForm.tvseries" />
+      <input required name="tvseries" value="Prison Break, 13 reasons why, The Returned" />
       <div ng-messages="profileForm.tvseries.$error">
         <div ng-message="required">This field is required.</div>
       </div>
@@ -21,7 +21,7 @@
   <div layout-gt-sm="row">
     <md-input-container class="md-block" flex-gt-sm>
       <label>Which one do you say: Bolacha or biscoito?</label>
-      <input required name="biscoito" ng-model="main.profileForm.biscoito" />
+      <input required name="biscoito" value="Biscoito FTW." />
       <div ng-messages="profileForm.biscoito.$error">
         <div ng-message="required">This field is required.</div>
       </div>
@@ -29,7 +29,7 @@
     <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
     <md-input-container class="md-block" flex-gt-sm>
       <label>What is the best quote ever</label>
-      <input required name="bestquote" ng-model="main.profileForm.bestquote" />
+      <input required name="bestquote" value="Não sabendo que era impossível, foi lá e fez. - Jean Cocteau" />
       <div ng-messages="profileForm.bestquote.$error">
         <div ng-message="required">This field is required.</div>
       </div>
@@ -38,22 +38,22 @@
 </ng-form>
 
 <div layout-gt-sm="row" layout-align="space-between center">
-  <div ng-if="main.moviesForm.movie">
+  <div ng-init="myMovie = 7">
     <p><small>Your favorite Star Wars Movie</small></p>
-    <md-radio-group ng-model="main.moviesForm.movie">
-      <md-radio-button value="{{ main.moviesForm.movie }}" class="md-primary">{{ main.movies[main.moviesForm.movie].Title }}</md-radio-button>
+    <md-radio-group ng-model="myMovie">
+      <md-radio-button value="7" class="md-primary">Star Wars: The Force Awakens</md-radio-button>
     </md-radio-group>
   </div>
-  <div ng-if="main.seriesForm.season">
+  <div ng-init="mySeason = 1">
     <p><small>Your favorite GoT Season</small></p>
-    <md-radio-group ng-model="main.seriesForm.season">
-      <md-radio-button value="{{ main.seriesForm.season }}" class="md-primary">GoT Season - {{ main.season.Season }}</md-radio-button>
+    <md-radio-group ng-model="mySeason">
+      <md-radio-button value="1" class="md-primary">GoT Season - {{ mySeason }}</md-radio-button>
     </md-radio-group>
   </div>
-  <div>
+  <div ng-init="myFood = 3">
     <p><small>Your kind of food</small></p>
-    <md-radio-group ng-model="main.foodForm.food">
-      <md-radio-button value="{{ main.foodForm.food }}" class="md-primary">{{ main.foods[main.foodForm.food].Title }}</md-radio-button>
+    <md-radio-group ng-model="myFood">
+      <md-radio-button value="3" class="md-primary">{{ main.foods[3].Title }}</md-radio-button>
     </md-radio-group>
   </div>
 </div>
