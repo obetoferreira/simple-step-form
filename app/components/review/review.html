@@ -38,13 +38,13 @@
 </ng-form>
 
 <div layout-gt-sm="row" layout-align="space-between center">
-  <div>
+  <div ng-if="main.moviesForm.movie">
     <p><small>Your favorite Star Wars Movie</small></p>
     <md-radio-group ng-model="main.moviesForm.movie">
       <md-radio-button value="{{ main.moviesForm.movie }}" class="md-primary">{{ main.movies[main.moviesForm.movie].Title }}</md-radio-button>
     </md-radio-group>
   </div>
-  <div>
+  <div ng-if="main.seriesForm.season">
     <p><small>Your favorite GoT Season</small></p>
     <md-radio-group ng-model="main.seriesForm.season">
       <md-radio-button value="{{ main.seriesForm.season }}" class="md-primary">GoT Season - {{ main.season.Season }}</md-radio-button>

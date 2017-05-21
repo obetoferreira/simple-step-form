@@ -1,45 +1,48 @@
 <ng-form name="seriesForm">
   <h1>{{ main.currentStepObj.title }}</h1>
-  <br>
-
-  <div layout="row" layout-wrap>
-    <div flex="25" hide-xs>
-      <img class="img-responsive" ng-if="main.serie.Poster && main.serie.Poster !== 'N/A'" ng-show="main.serie.Poster" ng-src="{{ main.serie.Poster }}" alt="{{ main.serie.Title }}">
-      <img class="img-responsive" ng-if="!main.serie.Poster || main.serie.Poster === 'N/A'" ng-src="http://marvelmoviemarathon.com/posters/placeholder.png" alt="{{ main.serie.Title }}">
+  <div ng-if="main.status.serie.fetched">
+    <br>
+    <div layout="row" layout-wrap>
+      <div flex="25" hide-xs>
+        <img class="img-responsive" ng-if="main.serie.Poster && main.serie.Poster !== 'N/A'" ng-show="main.serie.Poster" ng-src="{{ main.serie.Poster }}" alt="{{ main.serie.Title }}">
+        <img class="img-responsive" ng-if="!main.serie.Poster || main.serie.Poster === 'N/A'" ng-src="http://marvelmoviemarathon.com/posters/placeholder.png" alt="{{ main.serie.Title }}">
+      </div>
+      <div flex="5" hide-xs></div>
+      <div flex>
+        <h4>{{ main.serie.Title }} ({{ main.serie.Year }})</h4>
+        <div>{{ main.serie.Plot }}</div>
+        <p>GOT is an amazing TV Show. What is your favorite season?</p>
+        <md-radio-group ng-model="main.seriesForm.season" required ng-change="main.getSeason()" layout="row" layout-wrap layout-align="space-around start">
+          <div ng-repeat="season in main.seasons">
+            <md-radio-button ng-value="season" aria-label="{{ season }}">{{ season }}</md-radio-button>
+          </div>
+        </md-radio-group>
+      </div>
     </div>
-    <div flex="5" hide-xs></div>
-    <div flex>
-      <h4>{{ main.serie.Title }} ({{ main.serie.Year }})</h4>
-      <div>{{ main.serie.Plot }}</div>
-      <p>GOT is an amazing TV Show. What is your favorite season?</p>
-      <md-radio-group ng-model="main.seriesForm.season" required ng-change="main.getSeason()" layout="row" layout-wrap layout-align="space-around start">
-        <div ng-repeat="season in main.seasons">
-          <md-radio-button ng-value="season" aria-label="{{ season }}">{{ season }}</md-radio-button>
-        </div>
-      </md-radio-group>
+    <div class="responsive-table episode-list">
+      <table ng-if="main.season">
+        <thead>
+          <tr>
+            <th width="100">Episode</th>
+            <th width="auto">Name</th>
+            <th width="100">Released</th>
+            <th width="100">Imdb Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="episode in main.season.Episodes">
+            <td>{{ episode.Episode }}</td>
+            <td>{{ episode.Title }}</td>
+            <td>{{ episode.Released | date }}</td>
+            <td>{{ episode.imdbRating }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
-
-  <div class="responsive-table episode-list">
-    <table ng-if="main.season">
-      <thead>
-        <tr>
-          <th width="100">Episode</th>
-          <th width="auto">Name</th>
-          <th width="100">Released</th>
-          <th width="100">Imdb Rating</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="episode in main.season.Episodes">
-          <td>{{ episode.Episode }}</td>
-          <td>{{ episode.Title }}</td>
-          <td>{{ episode.Released | date }}</td>
-          <td>{{ episode.imdbRating }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div ng-if="main.status.serie.error">
+    <p>Error fetching data. Please, try again later.</p>
   </div>
 
 </ng-form>

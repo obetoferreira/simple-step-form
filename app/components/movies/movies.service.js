@@ -6,12 +6,21 @@
     .factory('Movies', movies)
 
   /** @ngInject */
-  function movies ($http) {
+  function movies ($http, apiKey) {
+
+    function endpoint () {
+      var path = 'http://www.omdbapi.com/?'
+      if (apiKey) {
+        return path + 'apiKey=' + apiKey + '&'
+      }
+      return path
+    }
+
     return {
       getMovies: function () {
         return $http({
           method: 'GET',
-          url: 'http://www.omdbapi.com/?s=%22Star%20Wars:%20Episode%22'
+          url: endpoint() + 's=%22Star%20Wars:%20Episode%22'
         })
       }
     }

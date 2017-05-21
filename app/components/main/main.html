@@ -3,7 +3,7 @@
     <nav class="stepper">
       <ul>
         <li ng-repeat="step in main.steps track by $index">
-          <button ng-class="{'active': main.isDirtyStep($index)}" ng-click="main.setCurrentStep($index)" ng-disabled="!main.isDirtyStep($index)">{{ ($index + 1) }}</button>
+          <button ng-class="{'active': main.isDirtyStep($index)}" ng-click="main.setCurrentStep($index)">{{ ($index + 1) }}</button>
         </li>
       </ul>
     </nav>
@@ -19,8 +19,8 @@
   <footer class="form-footer" layout="row" layout-align="space-between center" ng-if="!main.isWelcomeState()">
     <div><md-button ng-if="!main.isFirstStep()" ng-click="main.prevStep()" class="md-raised">Back</md-button></div>
     <div>
-      <md-button ng-if="!main.isLastStep()" ng-disabled="mainForm[main.currentStepObj.form].$invalid" ng-click="main.nextStep()" class="md-raised md-primary">Next</md-button>
-      <md-button ng-if="main.isLastStep()" ng-disabled="mainForm[main.currentStepObj.form].$invalid" ui-sref="done" class="md-raised md-primary">Save</md-button>
+      <md-button ng-if="!main.isLastStep()" ng-click="main.nextStep()" class="md-raised md-primary">Next</md-button>
+      <md-button ng-if="main.isLastStep()" ui-sref="done" class="md-raised md-primary">Save</md-button>
     </div>
   </footer>
 </div>

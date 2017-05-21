@@ -6,12 +6,21 @@
     .factory('Series', series)
 
   /** @ngInject */
-  function series ($http) {
+  function series ($http, apiKey) {
+
+    function endpoint () {
+      var path = 'http://www.omdbapi.com/?'
+      if (apiKey) {
+        return path + 'apiKey=' + apiKey + '&'
+      }
+      return path
+    }
+
     return {
       getSerie: function () {
         return $http({
           method: 'GET',
-          url: 'http://www.omdbapi.com/?t=Game%20of%20Thrones'
+          url: endpoint() + 't=Game%20of%20Thrones'
         })
       },
       getSeasons: function () {
@@ -21,7 +30,7 @@
       getSeason: function (season) {
         return $http({
           method: 'GET',
-          url: 'http://www.omdbapi.com/?t=Game%20of%20Thrones&Season=' + season
+          url: endpoint() + 't=Game%20of%20Thrones&Season=' + season
         })
       }
     }

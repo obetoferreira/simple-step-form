@@ -9,6 +9,17 @@
   function MainController ($state, Steps, Movies, Series, Foods) {
     var vm = this
 
+    vm.status = {
+      movies: {
+        error: false,
+        fetched: false
+      },
+      serie: {
+        error: false,
+        fetched: false
+      }
+    }
+
     vm.isDirtyStep = function (step) {
       if (step <= vm.currentStep) {
         return true
@@ -49,8 +60,12 @@
 
     vm.getMovies = function (callback) {
       Movies.getMovies().then(function (res) {
+        vm.status.movies.fetched = true
+        vm.status.movies.error = false
         callback(res.data.Search)
       }, function (err) {
+        vm.status.movies.fetched = false
+        vm.status.movies.error = true
         console.log(err)
         callback()
       })
@@ -58,8 +73,12 @@
 
     vm.getSerie = function (callback) {
       Series.getSerie().then(function (res) {
+        vm.status.serie.fetched = true
+        vm.status.serie.error = false
         callback(res.data)
       }, function (err) {
+        vm.status.serie.fetched = false
+        vm.status.serie.error = true
         console.log(err)
         callback()
       })
@@ -86,6 +105,10 @@
 
     vm.isWelcomeState = function () {
       return $state.current.name === 'main'
+    }
+
+    function removeStep (index) {
+      vm.steps.splice(index, 1)
     }
 
     function init () {
