@@ -33,8 +33,13 @@
   /* Support for IE. */
   font-feature-settings: 'liga'; }
 
-html {
-  font-family: 'Roboto', sans-serif; }
+html, body {
+  background: #f7f7f7;
+  font-family: 'Roboto', sans-serif;
+  padding: 0; }
+
+* {
+  box-sizing: border-box; }
 
 [layout=row] {
   flex-direction: row; }
@@ -72,6 +77,10 @@ section.jumbotron {
 
 .text-center {
   text-align: center; }
+
+.main-view {
+  position: relative;
+  z-index: 1; }
 
 /**
  *  Do not remove the comment below. It's the markers used by gulp-inject to inject

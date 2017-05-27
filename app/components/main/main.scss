@@ -1,13 +1,20 @@
 // Layout
-.form-container {
-  margin: 0 auto;
-  padding: 15px;
+.container {
   max-width: 980px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.form-container {
+  background: #fff;
+  margin-bottom: 50px;
+}
+.form-body, .form-footer {
+  border: solid 1px #eee;
+  padding: 3.6% 6%;
 }
 .form-header, .form-body, .form-footer {
-  background: #fafafa;
   border: solid 1px #eee;
-  padding: 4% 6%;
 }
 .form-header {
   border-bottom: 0;
@@ -22,12 +29,13 @@
 .stepper {
   width: 100%;
   display: block;
+  position: relative;
 
   ul {
     display: flex;
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 5%;
     justify-content: space-between;
     position: relative;
     z-index: 10;
@@ -39,29 +47,55 @@
       height: 1px;
       position: absolute;
       z-index: -1;
-      background: #ccc;
+      background: #eee;
       top: 0; bottom: 0; left: 0; right: 0;
       margin: auto;
     }
 
     li {
       button {
-        display: block;
-        width: 30px;
-        height: 30px;
-        line-height: 25px;
-        text-align: center;
-        border-radius: 50%;
-        color: #000;
-        border: solid 1px #000;
-        outline: none;
         background: #fff;
-        font-size: 12px;
-        text-decoration: none;
+        padding: 33% 10px;
+        border: none;
+        outline: none;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
 
-        &.active {
-          background: #000;
+        & > .step-icon {
+          display: block;
+          width: 30px;
+          height: 30px;
+          line-height: 28px;
+          text-align: center;
+          border-radius: 50%;
           color: #fff;
+          background: #bbb;
+          text-decoration: none;
+          margin-right: 10px;
+
+          .material-icons {
+            color: #fff;
+            font-size: 18px;
+          }
+        }
+        & > .step-title {
+          color: #bbb;
+
+          @media (max-width: 767px) {
+            display: none;
+          }
+        }
+
+        &.active, &.dirty {
+          & > .step-icon {
+            background: #3F51B5;
+          }
+        }
+        &.active {
+          & > .step-title {
+            color: #000;
+          }
         }
       }
     }

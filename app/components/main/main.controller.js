@@ -21,11 +21,11 @@
     }
 
     vm.isDirtyStep = function (step) {
-      if (step <= vm.currentStep) {
-        return true
-      } else {
-        return false
-      }
+      return step < vm.currentStep
+    }
+
+    vm.isActiveStep = function (step) {
+      return step === vm.currentStep
     }
 
     vm.setCurrentStep = function (val) {

@@ -20,7 +20,9 @@
   <link rel="stylesheet" href="assets/css/components/main/main.css">
   <link rel="stylesheet" href="assets/css/components/movies/movies.css">
   <link rel="stylesheet" href="assets/css/components/series/series.css">
+  <link rel="stylesheet" href="assets/css/components/header/header.css">
   <!-- endinject -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body ng-app="simpleStepForm">
 
@@ -28,7 +30,9 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <div ui-view></div>
+  <my-header></my-header>
+
+  <div class="main-view" ui-view></div>
 
   <!-- bower:js -->
   <script src="/bower_components/angular/angular.js"></script>
@@ -50,6 +54,7 @@
   <script src="index.run.js"></script>
   <script src="components/done/done.controller.js"></script>
   <script src="components/food/food.service.js"></script>
+  <script src="components/header/header.directive.js"></script>
   <script src="components/main/main.controller.js"></script>
   <script src="components/main/main.service.js"></script>
   <script src="components/movies/movies.service.js"></script>

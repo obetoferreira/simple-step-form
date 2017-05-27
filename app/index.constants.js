@@ -6,6 +6,6 @@
     .module('simpleStepForm')
     .constant('malarkey', malarkey)
     .constant('moment', moment)
-    .constant('apiKey', '89c1033')
+    .constant('apiKey', 'bd9be61b')
 
 })();

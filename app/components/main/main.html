@@ -1,26 +1,33 @@
-<div layout="column" class="form-container">
-  <header class="form-header">
-    <nav class="stepper">
-      <ul>
-        <li ng-repeat="step in main.steps track by $index">
-          <button ng-class="{'active': main.isDirtyStep($index)}" ng-click="main.setCurrentStep($index)">{{ ($index + 1) }}</button>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  <form name="mainForm">
-    <div class="form-body" ui-view>
-      <div class="text-center">
-        <h1>=)</h1>
-        <md-button ng-click="main.setCurrentStep(0)" class="md-raised md-primary">Start</md-button>
+<div class="container">
+  <div layout="column" class="md-whiteframe-10dp form-container">
+    <header class="form-header">
+      <nav class="stepper">
+        <ul>
+          <li ng-repeat="step in main.steps track by $index">
+            <button ng-class="{'dirty': main.isDirtyStep($index), 'active': main.isActiveStep($index)}" ng-click="main.setCurrentStep($index)">
+              <span ng-if="main.isDirtyStep($index)" class="step-icon"><md-icon class="material-icons">check</md-icon></span>
+              <span ng-if="main.isActiveStep($index)" class="step-icon"><md-icon class="material-icons">edit</md-icon></span>
+              <span ng-if="!main.isDirtyStep($index) && !main.isActiveStep($index)" class="step-icon">{{ ($index + 1) }}</span>
+              <span class="step-title">{{ step.title }}</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <form name="mainForm">
+      <div class="form-body" ui-view>
+        <div class="text-center">
+          <h1>=)</h1>
+          <md-button ng-click="main.setCurrentStep(0)" class="md-raised md-primary">Start</md-button>
+        </div>
       </div>
-    </div>
-  </form>
-  <footer class="form-footer" layout="row" layout-align="space-between center" ng-if="!main.isWelcomeState()">
-    <div><md-button ng-if="!main.isFirstStep()" ng-click="main.prevStep()" class="md-raised">Back</md-button></div>
-    <div>
-      <md-button ng-if="!main.isLastStep()" ng-click="main.nextStep()" class="md-raised md-primary">Next</md-button>
-      <md-button ng-if="main.isLastStep()" ui-sref="done" class="md-raised md-primary">Save</md-button>
-    </div>
-  </footer>
+    </form>
+    <footer class="form-footer" layout="row" layout-align="space-between center" ng-if="!main.isWelcomeState()">
+      <div><md-button ng-if="!main.isFirstStep()" ng-click="main.prevStep()" class="md-primary">Back</md-button></div>
+      <div>
+        <md-button ng-if="!main.isLastStep()" ng-click="main.nextStep()" class="md-raised md-primary">Next</md-button>
+        <md-button ng-if="main.isLastStep()" ui-sref="done" class="md-raised md-primary">Save</md-button>
+      </div>
+    </footer>
+  </div>
 </div>
